@@ -1,0 +1,37 @@
+
+
+{% extends "base.html" %}
+{% block title %}Especialidades médicas{% endblock %}
+{% block cuerpo_titulo %}Especialidades médicas{% endblock %}
+{% block link_crear %}
+    <a class="btn btn-success btn-sm" href="{% url 'especialidad_create' %}">Añadir especialidad</a>
+{% endblock %}
+
+{% block cuerpo %}
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for e in especialidades %}
+                <tr>
+                    <td>{{ e.nombre }}</td>
+                    <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'especialidad_update' e.pk %}">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" href="{% url 'especialidad_delete' e.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No hay especialidades médicas aun.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+{% endblock %}

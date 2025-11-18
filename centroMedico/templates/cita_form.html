@@ -1,0 +1,41 @@
+
+
+{% extends "base.html" %}
+
+{% block title %}Agendar Cita{% endblock %}
+{% block cuerpo_titulo %}Agendar Cita{% endblock %}
+
+
+{% block cuerpo %}
+<form method="post" novalidate class="row g-3">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+  
+    <div class="col-md-4">
+      <label class="form-label">Paciente</label>
+      {{ form.paciente }} {{ form.paciente.errors }}
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Médico</label>
+      {{ form.medico }} {{ form.medico.errors }}
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Fecha de la cita</label>
+        {{ form.fecha_cita }} {{ form.fecha_cita.errors }}
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Hora de la cita</label>
+        {{ form.hora_cita }} {{ form.hora_cita.errors }}
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Observaciones</label>
+        {{ form.observaciones }} {{ form.observaciones.errors }}
+    </div>
+    
+  
+    <div class="col-12">
+      <button class="btn btn-success" type="submit">Guardar</button>
+      <a class="btn btn-secondary" href="{% url 'cita_list' %}">Volver</a>
+    </div>
+</form>    
+{% endblock %}

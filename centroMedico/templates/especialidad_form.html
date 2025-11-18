@@ -1,0 +1,24 @@
+
+{% extends "base.html" %}
+
+{% block title %}Añadir Especialidad{% endblock %}
+{% block cuerpo_titulo %}Añadir especialidad{% endblock %}
+
+
+{% block cuerpo %}
+<form method="post" novalidate class="row g-3">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+  
+    <div class="col-md-4">
+      <label class="form-label">Nombre</label>
+      {{ form.nombre }} {{ form.nombre.errors }}
+    </div>
+  
+    <div class="col-12">
+      <button class="btn btn-success" type="submit">Guardar</button>
+      <a class="btn btn-secondary" href="{% url 'especialidad_list' %}">Volver</a>
+    </div>
+</form>
+    
+{% endblock %}

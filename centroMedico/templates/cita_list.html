@@ -1,0 +1,68 @@
+
+
+{% extends "base.html" %}
+{% block title %}Citas{% endblock %}
+{% block cuerpo_titulo %}Citas médicas{% endblock %}
+{% block link_crear %}
+    <a class="btn btn-success btn-sm" href="{% url 'cita_create' %}">Añadir cita</a>
+{% endblock %}
+
+{% block cuerpo %}
+<div class="container">
+    <div class="row">
+        <form method="get" class="pb-1 mb-2 border-bottom">
+            <div class="d-flex mb-2 gap-3">
+                <div>
+                    <label class="form-label">Médico</label>
+                    {{ form.medico }} {{ form.medico.errors }}
+                </div>
+                <div>
+                    <label class="form-label">Paciente</label>
+                    {{ form.paciente }} {{ form.paciente.errors }}
+                </div>
+                <div>
+                    <label class="form-label">Fecha de la cita</label>
+                    {{ form.fecha_cita }} {{ form.fecha_cita.errors }}
+                </div>
+                <div class="d-flex gap-1 align-items-end">
+                    <button class="btn btn-primary" type="submit">Filtrar</button>
+                    <a href="{% url 'cita_list' %}" class="btn btn-secondary">Limpiar</a>
+                </div>
+            </div>
+        </form>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Paciente</th>
+                    <th>Médico</th>
+                    <th>Especialidad</th>
+                    <th>Fecha de la cita</th>
+                    <th>Hora de la cita</th>
+                    <th>Observaciones</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for c in citas %}
+                <tr>
+                    <td>{{ c.paciente }}</td>
+                    <td>{{ c.medico }}</td>
+                    <td>{{ c.especialidad }}</td>
+                    <td>{{ c.fecha_cita }}</td>
+                    <td>{{ c.hora_cita }}</td>
+                    <td>{{ c.observaciones | default:"Sin observaciones."}}</td>
+                    <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'cita_update' c.pk %}">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" href="{% url 'cita_delete' c.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="6">No hay citas agendadas aun.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+{% endblock %}

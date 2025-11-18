@@ -1,0 +1,41 @@
+
+
+{% extends "base.html" %}
+{% block title %}Médicos{% endblock %}
+{% block link_crear %}
+    <a class="btn btn-success btn-sm" href="{% url 'medico_create' %}">Añadir médico</a>
+{% endblock %}
+{% block cuerpo_titulo %}Médicos{% endblock %}
+
+{% block cuerpo %}
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Rut</th>
+            <th>Especialidad</th>
+            <th>Correo</th>
+            <th>Teléfono</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for m in medicos %}
+        <tr>
+            <td>{{ m.nombre_completo }}</td>
+            <td>{{ m.rut }}</td>
+            <td>{{ m.especialidad }}</td>
+            <td>{{ m.correo }}</td>
+            <td>{{ m.telefono | default:"-" }}</td>
+            <td class="text-end">
+            <a class="btn btn-sm btn-outline-secondary" href="{% url 'medico_update' m.pk %}">Editar</a>
+            <a class="btn btn-sm btn-outline-danger" href="{% url 'medico_delete' m.pk %}">Eliminar</a>
+            </td>
+        </tr>
+    {% empty %}
+        <tr>
+            <td colspan="5">No hay médicos aun.</td>
+        </tr>
+    {% endfor %}
+    </tbody>
+    </table>
+{% endblock %}

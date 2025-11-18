@@ -1,0 +1,45 @@
+
+
+{% extends "base.html" %}
+{% block title %}Pacientes{% endblock %}
+{% block cuerpo_titulo %}Pacientes{% endblock %}
+{% block link_crear %}
+    <a class="btn btn-success btn-sm" href="{% url 'paciente_create' %}">Añadir paciente</a>
+{% endblock %}
+
+{% block cuerpo %}
+<div class="container">
+    <div class="row">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Rut</th>
+                    <th>Fecha de nacimiento</th>
+                    <th>Sexo</th>
+                    <th>Teléfono</th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for p in pacientes %}
+                <tr>
+                    <td>{{ p.nombre_completo }}</td>
+                    <td>{{ p.rut }}</td>
+                    <td>{{ p.fecha_nacimiento }}</td>
+                    <td>{{ p.sexo }}</td>
+                    <td>{{ p.telefono | default:"-" }}</td>
+                    <td class="text-end">
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'paciente_update' p.pk %}">Editar</a>
+                    <a class="btn btn-sm btn-outline-danger" href="{% url 'paciente_delete' p.pk %}">Eliminar</a>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="5">No hay pacientes aun.</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+    </div>
+</div>
+{% endblock %}

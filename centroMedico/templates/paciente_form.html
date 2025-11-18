@@ -1,0 +1,42 @@
+
+{% extends "base.html" %}
+
+{% block title %}Añadir Paciente{% endblock %}
+{% block cuerpo_titulo %}Añadir paciente{% endblock %}
+
+
+{% block cuerpo %}
+<form method="post" novalidate class="row g-3">
+    {% csrf_token %}
+    {{ form.non_field_errors }}
+  
+    <div class="col-md-4">
+      <label class="form-label">Nombre y apellido</label>
+      {{ form.nombre_completo }} {{ form.nombre_completo.errors }}
+    </div>
+    <div class="col-md-4">
+      <label class="form-label">Rut</label>
+      {{ form.rut }} {{ form.rut.errors }}
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Fecha de nacimiento</label>
+        {{ form.fecha_nacimiento }} {{ form.fecha_nacimiento.errors }}
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Sexo</label>
+        {{ form.sexo }} {{ form.sexo.errors }}
+    </div>
+    <div class="col-md-4">
+        <label class="form-label">Teléfono</label>
+        {{ form.telefono }} {{ form.telefono.errors }}
+    </div>
+    
+  
+    <div class="col-12">
+      <button class="btn btn-success" type="submit">Guardar</button>
+      <a class="btn btn-secondary" href="{% url 'paciente_list' %}">Volver</a>
+    </div>
+</form>        
+
+
+{% endblock %}

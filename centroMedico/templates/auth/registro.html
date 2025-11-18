@@ -1,0 +1,17 @@
+
+{% extends "auth/base_auth.html" %}
+
+{% block title %}Registro de usuario{% endblock %}
+{% block titulo %}Registro{% endblock %}
+
+
+{% block cuerpo %}
+<form method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+
+    <input type="submit" class="btn btn-primary my-2" value="Registrarse">
+    <a class="btn btn-outline-primary" href="{% url "login" %}">Iniciar sesión</a>
+</form>
+{% endblock %}
+
