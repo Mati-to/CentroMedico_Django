@@ -7,15 +7,6 @@
     <form method="POST">
         {% csrf_token %}
         {{ form.as_p }}
-        
-        {% comment %} <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario</label>
-            <input type="text" name="username" class="form-control" id="usuario">
-        </div>
-        <div class="mb-3">
-            <label for="contrasena" class="form-label">Contraseña</label>
-            <input type="password" name="password" class="form-control" id="contrasena">
-        </div> {% endcomment %}
 
         <button class="btn btn-primary" type="submit">Ingresar</button>
     </form>

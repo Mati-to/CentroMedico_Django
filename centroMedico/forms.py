@@ -58,18 +58,18 @@ class MedicoForm(forms.ModelForm):
         else:
             return telefono
     
-    # def clean(self):
-    #     cleaned_data = super().clean()
-    #     correo = cleaned_data.get("correo")
+    def clean(self):
+        cleaned_data = super().clean()
+        correo = cleaned_data.get("correo")
 
-    #     if correo:
-    #         medico = Medico.objects.filter(correo=correo)
-    #         if self.instance.pk:
-    #             medico = medico.exclude(pk=self.instance.pk)
-    #         if medico.exists():
-    #             raise forms.ValidationError("El correo ya está asociado a un médico en el sistema.")
+        if correo:
+            medico = Medico.objects.filter(correo=correo)
+            if self.instance.pk:
+                medico = medico.exclude(pk=self.instance.pk)
+            if medico.exists():
+                raise forms.ValidationError("El correo ya está asociado a un médico en el sistema.")
             
-    #     return cleaned_data
+        return cleaned_data
 
 
 class PacienteForm(forms.ModelForm):

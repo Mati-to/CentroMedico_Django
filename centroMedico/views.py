@@ -18,21 +18,6 @@ def registro(req):
         form = RegistroForm()
     return render(req, "auth/registro.html", {"form": form})
 
-# def login_usuario(req):
-#     if req.method == "POST":
-#         username = req.POST["username"]
-#         password = req.POST["password"]
-#         user = authenticate(req, username=username, password=password)
-
-#         if user is not None:
-#             login(req, user)
-#             return redirect("index")
-
-#         else:
-#             return render(req, "auth/login.html", {"error": "Usuario y/o contraseña incorrectos."})
-        
-#     return render(req, "auth/login.html")
-
 def login_usuario(req):
     if req.method == "POST":
         form = LoginForm(req.POST)
